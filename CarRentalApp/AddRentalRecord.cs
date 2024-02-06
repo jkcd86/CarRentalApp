@@ -22,6 +22,7 @@ namespace CarRentalApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             // Select * from TypesOfCar
             var cars = carRentalEntities.TypesOfCars.ToList();
             cbTypeOfCar.DisplayMember = "Name";

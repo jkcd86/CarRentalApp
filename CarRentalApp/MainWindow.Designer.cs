@@ -62,6 +62,7 @@
             this.manageVehicleListingToolStripMenuItem.Name = "manageVehicleListingToolStripMenuItem";
             this.manageVehicleListingToolStripMenuItem.Size = new System.Drawing.Size(140, 20);
             this.manageVehicleListingToolStripMenuItem.Text = "Manage Vehicle Listing";
+            this.manageVehicleListingToolStripMenuItem.Click += new System.EventHandler(this.manageVehicleListingToolStripMenuItem_Click);
             // 
             // addVehicleToolStripMenuItem
             // 
@@ -100,20 +101,20 @@
             // addRentalRecordToolStripMenuItem
             // 
             this.addRentalRecordToolStripMenuItem.Name = "addRentalRecordToolStripMenuItem";
-            this.addRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.addRentalRecordToolStripMenuItem.Text = "Add Rental Record";
             this.addRentalRecordToolStripMenuItem.Click += new System.EventHandler(this.addRentalRecordToolStripMenuItem_Click);
             // 
             // viewArchiveToolStripMenuItem
             // 
             this.viewArchiveToolStripMenuItem.Name = "viewArchiveToolStripMenuItem";
-            this.viewArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewArchiveToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.viewArchiveToolStripMenuItem.Text = "View Archive";
             // 
             // editRentalRecordToolStripMenuItem
             // 
             this.editRentalRecordToolStripMenuItem.Name = "editRentalRecordToolStripMenuItem";
-            this.editRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editRentalRecordToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.editRentalRecordToolStripMenuItem.Text = "Edit Rental Record";
             // 
             // MainWindow
@@ -125,7 +126,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
-            this.Text = "Main Window";
+            this.Text = "Car Rental Manament System";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

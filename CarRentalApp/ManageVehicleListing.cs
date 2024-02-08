@@ -26,12 +26,29 @@ namespace CarRentalApp
             //var cars = _db.TypesOfCars.ToList();
 
             // SELECT Id as CarID, name as CarName from TypesOfCars
+
+            /*
             var cars = _db.TypesOfCars.
-                Select(q => new { CarID = q.id, CarName = q.name }).
+                Select(q => new { CarID = q.Id, CarName = q.Make }).
                 ToList();
             gvVehicleList.DataSource = cars;
             gvVehicleList.Columns[0].HeaderText = "ID";
             gvVehicleList.Columns[1].HeaderText = "NAME";
+        
+            */
+
+            var cars = _db.TypesOfCars
+                .Select(q => new 
+                { 
+                    Make = q.Make, 
+                    Model = q.Model, 
+                    VIN = q.VIN, 
+                    Year = q.Year,
+                    LicensePlateNumber = q.LicensePlateNumber 
+                })
+                .ToList();
+            gvVehicleList.DataSource = cars;
+            gvVehicleList.Columns[4].HeaderText = "License Plate Number";
         }
     }
 }

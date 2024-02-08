@@ -57,7 +57,7 @@
             // 
             this.tbCustomerName.Location = new System.Drawing.Point(16, 113);
             this.tbCustomerName.Name = "tbCustomerName";
-            this.tbCustomerName.Size = new System.Drawing.Size(207, 20);
+            this.tbCustomerName.Size = new System.Drawing.Size(276, 20);
             this.tbCustomerName.TabIndex = 1;
             // 
             // label2
@@ -74,13 +74,13 @@
             // 
             this.dtRented.Location = new System.Drawing.Point(16, 176);
             this.dtRented.Name = "dtRented";
-            this.dtRented.Size = new System.Drawing.Size(207, 20);
+            this.dtRented.Size = new System.Drawing.Size(276, 20);
             this.dtRented.TabIndex = 3;
             this.dtRented.ValueChanged += new System.EventHandler(this.dtRented_ValueChanged);
             // 
             // dtReturned
             // 
-            this.dtReturned.Location = new System.Drawing.Point(292, 176);
+            this.dtReturned.Location = new System.Drawing.Point(349, 176);
             this.dtReturned.Name = "dtReturned";
             this.dtReturned.Size = new System.Drawing.Size(200, 20);
             this.dtReturned.TabIndex = 4;
@@ -98,7 +98,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(289, 160);
+            this.label4.Location = new System.Drawing.Point(346, 160);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 6;
@@ -111,7 +111,7 @@
             this.cbTypeOfCar.FormattingEnabled = true;
             this.cbTypeOfCar.Location = new System.Drawing.Point(16, 245);
             this.cbTypeOfCar.Name = "cbTypeOfCar";
-            this.cbTypeOfCar.Size = new System.Drawing.Size(207, 21);
+            this.cbTypeOfCar.Size = new System.Drawing.Size(276, 21);
             this.cbTypeOfCar.TabIndex = 7;
             // 
             // label5
@@ -126,7 +126,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(292, 245);
+            this.button1.Location = new System.Drawing.Point(349, 245);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(200, 64);
             this.button1.TabIndex = 9;
@@ -136,7 +136,7 @@
             // 
             // tbCost
             // 
-            this.tbCost.Location = new System.Drawing.Point(292, 113);
+            this.tbCost.Location = new System.Drawing.Point(349, 113);
             this.tbCost.Name = "tbCost";
             this.tbCost.Size = new System.Drawing.Size(200, 20);
             this.tbCost.TabIndex = 10;
@@ -144,7 +144,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(289, 97);
+            this.label6.Location = new System.Drawing.Point(346, 97);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(28, 13);
             this.label6.TabIndex = 11;
@@ -154,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 321);
+            this.ClientSize = new System.Drawing.Size(749, 321);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tbCost);
             this.Controls.Add(this.button1);

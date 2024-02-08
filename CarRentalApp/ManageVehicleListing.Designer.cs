@@ -41,7 +41,7 @@
             this.gvVehicleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvVehicleList.Location = new System.Drawing.Point(12, 92);
             this.gvVehicleList.Name = "gvVehicleList";
-            this.gvVehicleList.Size = new System.Drawing.Size(355, 346);
+            this.gvVehicleList.Size = new System.Drawing.Size(587, 271);
             this.gvVehicleList.TabIndex = 0;
             // 
             // label1
@@ -56,27 +56,27 @@
             // 
             // btnAddCar
             // 
-            this.btnAddCar.Location = new System.Drawing.Point(428, 92);
+            this.btnAddCar.Location = new System.Drawing.Point(12, 401);
             this.btnAddCar.Name = "btnAddCar";
-            this.btnAddCar.Size = new System.Drawing.Size(75, 23);
+            this.btnAddCar.Size = new System.Drawing.Size(96, 37);
             this.btnAddCar.TabIndex = 2;
             this.btnAddCar.Text = "Add new car";
             this.btnAddCar.UseVisualStyleBackColor = true;
             // 
             // btnEditCar
             // 
-            this.btnEditCar.Location = new System.Drawing.Point(428, 260);
+            this.btnEditCar.Location = new System.Drawing.Point(155, 401);
             this.btnEditCar.Name = "btnEditCar";
-            this.btnEditCar.Size = new System.Drawing.Size(75, 23);
+            this.btnEditCar.Size = new System.Drawing.Size(89, 37);
             this.btnEditCar.TabIndex = 3;
             this.btnEditCar.Text = "Edit car";
             this.btnEditCar.UseVisualStyleBackColor = true;
             // 
             // btnDeleteCar
             // 
-            this.btnDeleteCar.Location = new System.Drawing.Point(428, 415);
+            this.btnDeleteCar.Location = new System.Drawing.Point(292, 401);
             this.btnDeleteCar.Name = "btnDeleteCar";
-            this.btnDeleteCar.Size = new System.Drawing.Size(75, 23);
+            this.btnDeleteCar.Size = new System.Drawing.Size(96, 37);
             this.btnDeleteCar.TabIndex = 4;
             this.btnDeleteCar.Text = "Delete car";
             this.btnDeleteCar.UseVisualStyleBackColor = true;

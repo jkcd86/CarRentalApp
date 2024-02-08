@@ -79,6 +79,7 @@
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Save changes";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -88,6 +89,7 @@
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblTitle
             // 

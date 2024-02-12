@@ -33,6 +33,7 @@
             this.btnAddCar = new System.Windows.Forms.Button();
             this.btnEditCar = new System.Windows.Forms.Button();
             this.btnDeleteCar = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gvVehicleList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,6 +63,7 @@
             this.btnAddCar.TabIndex = 2;
             this.btnAddCar.Text = "Add new car";
             this.btnAddCar.UseVisualStyleBackColor = true;
+            this.btnAddCar.Click += new System.EventHandler(this.btnAddCar_Click);
             // 
             // btnEditCar
             // 
@@ -71,6 +73,7 @@
             this.btnEditCar.TabIndex = 3;
             this.btnEditCar.Text = "Edit car";
             this.btnEditCar.UseVisualStyleBackColor = true;
+            this.btnEditCar.Click += new System.EventHandler(this.btnEditCar_Click);
             // 
             // btnDeleteCar
             // 
@@ -80,12 +83,23 @@
             this.btnDeleteCar.TabIndex = 4;
             this.btnDeleteCar.Text = "Delete car";
             this.btnDeleteCar.UseVisualStyleBackColor = true;
+            this.btnDeleteCar.Click += new System.EventHandler(this.btnDeleteCar_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(503, 401);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 37);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Refresh Data";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // ManageVehicleListing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(611, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDeleteCar);
             this.Controls.Add(this.btnEditCar);
             this.Controls.Add(this.btnAddCar);
@@ -107,5 +121,6 @@
         private System.Windows.Forms.Button btnAddCar;
         private System.Windows.Forms.Button btnEditCar;
         private System.Windows.Forms.Button btnDeleteCar;
+        private System.Windows.Forms.Button button1;
     }
 }

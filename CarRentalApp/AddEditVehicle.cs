@@ -13,22 +13,26 @@ namespace CarRentalApp
     public partial class AddEditVehicle : Form
     {
         private bool isEditMode;
-        private readonly CarRentalEntities _db = new CarRentalEntities();
+        private ManageVehicleListing _manageVehicleListing;
+        private readonly CarRentalEntities _db;
 
-        public AddEditVehicle()
+        public AddEditVehicle(ManageVehicleListing manageVehicleListing = null)
         {
             InitializeComponent();
             lblTitle.Text = "Add new vehicle";
             this.Text = "Add new vehicle";
             isEditMode = false;
+            _manageVehicleListing = manageVehicleListing;
             _db = new CarRentalEntities();
         }
          
-        public AddEditVehicle(TypesOfCar carToEdit)
+        public AddEditVehicle(TypesOfCar carToEdit, ManageVehicleListing manageVehicleListing)
         {
             InitializeComponent();
             lblTitle.Text = "Edit vehicle";
             this.Text = "Edit vehicle";
+            _manageVehicleListing = manageVehicleListing;
+
             if (carToEdit == null)
             {
                 MessageBox.Show("Please ensure that you selected a valid record to edit");

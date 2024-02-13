@@ -101,7 +101,7 @@ namespace CarRentalApp
                 var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id);
 
                 // launch AddEditVehicle window with data
-                var addEditVehicle = new AddEditVehicle(car);
+                var addEditVehicle = new AddEditVehicle(car, this);
                 addEditVehicle.MdiParent = this.MdiParent;
                 addEditVehicle.Show();
             }
@@ -113,9 +113,9 @@ namespace CarRentalApp
 
         private void btnAddCar_Click(object sender, EventArgs e)
         {
-            var addEditVehicle = new AddEditVehicle();
+            var addEditVehicle = new AddEditVehicle(this);
+            addEditVehicle.ShowDialog();
             addEditVehicle.MdiParent = this.MdiParent;
-            addEditVehicle.Show();   
         }
 
         private void btnDeleteCar_Click(object sender, EventArgs e)
@@ -137,6 +137,14 @@ namespace CarRentalApp
             {
                 MessageBox.Show($"Error: {ex.Message}");
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            // SImple Refresh Option
+            PopulateGrid();
+            gvVehicleList.Update();
+            gvVehicleList.Refresh();
         }
     }
 }

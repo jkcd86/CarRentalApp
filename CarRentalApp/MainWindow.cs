@@ -18,7 +18,7 @@ namespace CarRentalApp
             InitializeComponent();
         }
 
-        public MainWindow(Login _login)
+        public MainWindow(Login login)
         {
             InitializeComponent();
             _login = login;
@@ -56,6 +56,16 @@ namespace CarRentalApp
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
             _login.Close();
+        }
+
+        private void manageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Utils.FormIsOpen("ManageUsers"))
+            {
+                var manageUsers = new ManageUsers();
+                manageUsers.MdiParent = this;
+                manageUsers.Show();
+            }
         }
     }
 }

@@ -39,41 +39,41 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(596, 403);
+            this.btnRefresh.Location = new System.Drawing.Point(150, 121);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(96, 37);
-            this.btnRefresh.TabIndex = 11;
-            this.btnRefresh.Text = "Refresh Data";
+            this.btnRefresh.Size = new System.Drawing.Size(122, 51);
+            this.btnRefresh.TabIndex = 12;
+            this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnDeleteRecord
             // 
-            this.btnDeleteRecord.Location = new System.Drawing.Point(385, 403);
+            this.btnDeleteRecord.Location = new System.Drawing.Point(804, 520);
             this.btnDeleteRecord.Name = "btnDeleteRecord";
-            this.btnDeleteRecord.Size = new System.Drawing.Size(96, 37);
-            this.btnDeleteRecord.TabIndex = 10;
-            this.btnDeleteRecord.Text = "Delete record";
+            this.btnDeleteRecord.Size = new System.Drawing.Size(122, 51);
+            this.btnDeleteRecord.TabIndex = 11;
+            this.btnDeleteRecord.Text = "Delete Record";
             this.btnDeleteRecord.UseVisualStyleBackColor = true;
             this.btnDeleteRecord.Click += new System.EventHandler(this.btnDeleteRecord_Click);
             // 
             // btnEditRecord
             // 
-            this.btnEditRecord.Location = new System.Drawing.Point(248, 403);
+            this.btnEditRecord.Location = new System.Drawing.Point(490, 520);
             this.btnEditRecord.Name = "btnEditRecord";
-            this.btnEditRecord.Size = new System.Drawing.Size(89, 37);
-            this.btnEditRecord.TabIndex = 9;
-            this.btnEditRecord.Text = "Edit record";
+            this.btnEditRecord.Size = new System.Drawing.Size(122, 51);
+            this.btnEditRecord.TabIndex = 10;
+            this.btnEditRecord.Text = "Edit Record";
             this.btnEditRecord.UseVisualStyleBackColor = true;
             this.btnEditRecord.Click += new System.EventHandler(this.btnEditRecord_Click);
             // 
             // btnAddRecord
             // 
-            this.btnAddRecord.Location = new System.Drawing.Point(105, 403);
+            this.btnAddRecord.Location = new System.Drawing.Point(150, 520);
             this.btnAddRecord.Name = "btnAddRecord";
-            this.btnAddRecord.Size = new System.Drawing.Size(96, 37);
-            this.btnAddRecord.TabIndex = 8;
-            this.btnAddRecord.Text = "Add new record";
+            this.btnAddRecord.Size = new System.Drawing.Size(122, 51);
+            this.btnAddRecord.TabIndex = 9;
+            this.btnAddRecord.Text = "Add New Record";
             this.btnAddRecord.UseVisualStyleBackColor = true;
             this.btnAddRecord.Click += new System.EventHandler(this.btnAddRecord_Click);
             // 
@@ -81,33 +81,36 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Matura MT Script Capitals", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(105, 11);
+            this.label1.Location = new System.Drawing.Point(170, 39);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(569, 64);
-            this.label1.TabIndex = 7;
+            this.label1.Size = new System.Drawing.Size(704, 79);
+            this.label1.TabIndex = 8;
             this.label1.Text = "Manage Rental Records";
             // 
-            // gvVehicleList
+            // gvRecordList
             // 
             this.gvRecordList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvRecordList.Location = new System.Drawing.Point(105, 94);
-            this.gvRecordList.Name = "gvVehicleList";
-            this.gvRecordList.Size = new System.Drawing.Size(587, 271);
-            this.gvRecordList.TabIndex = 6;
+            this.gvRecordList.Location = new System.Drawing.Point(150, 179);
+            this.gvRecordList.Name = "gvRecordList";
+            this.gvRecordList.RowHeadersWidth = 51;
+            this.gvRecordList.RowTemplate.Height = 24;
+            this.gvRecordList.Size = new System.Drawing.Size(776, 289);
+            this.gvRecordList.TabIndex = 7;
             // 
-            // MangeRentalRecords
+            // ManageRentalRecords
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1076, 610);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDeleteRecord);
             this.Controls.Add(this.btnEditRecord);
             this.Controls.Add(this.btnAddRecord);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gvRecordList);
-            this.Name = "MangeRentalRecords";
-            this.Text = "Mange Rental Records";
+            this.Name = "ManageRentalRecords";
+            this.Text = "Manage Rental Records";
+            this.Load += new System.EventHandler(this.ManageRentalRecords_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvRecordList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

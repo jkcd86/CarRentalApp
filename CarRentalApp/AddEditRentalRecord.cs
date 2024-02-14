@@ -13,22 +13,24 @@ namespace CarRentalApp
     public partial class AddEditRentalRecord : Form
     {
         private bool isEditMode;
+        private ManageRentalRecords _manageRentalRecords;
         private readonly CarRentalEntities _db;
-
-        public AddEditRentalRecord()
+        public AddEditRentalRecord(ManageRentalRecords manageRentalRecords = null)
         {
             InitializeComponent();
-            lblTitle.Text = "Add new Record";
-            this.Text = "Add new Record";
+            lblTitle.Text = "Add New Rental Record";
+            this.Text = "Add New Rental Record";
             isEditMode = false;
+            _manageRentalRecords = manageRentalRecords;
             _db = new CarRentalEntities();
         }
 
-        public AddEditRentalRecord(CarRentalRecord recordToEdit)
+        public AddEditRentalRecord(CarRentalRecord recordToEdit, ManageRentalRecords manageRentalRecords = null)
         {
             InitializeComponent();
-            lblTitle.Text = "Edit Record";
-            this.Text = "Edit Record";
+            lblTitle.Text = "Edit Rental Record";
+            this.Text = "Edit Rental Record";
+            _manageRentalRecords = manageRentalRecords;
             if (recordToEdit == null)
             {
                 MessageBox.Show("Please ensure that you selected a valid record to edit");
@@ -51,52 +53,10 @@ namespace CarRentalApp
             lblRecordId.Text = recordToEdit.id.ToString();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-            // Select * from TypesOfCar
-            //var cars = carRentalEntities.TypesOfCars.ToList();
-
-            var cars = _db.TypesOfCars
-                .Select(q => new { ID = q.Id, Name = q.Make + " " + q.Model })
-                .ToList();
-
-            cbTypeOfCar.DisplayMember = "Name";
-            cbTypeOfCar.ValueMember = "Id";
-            cbTypeOfCar.DataSource = cars;
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            try {
-                // MessageBox.Show($"Thank you for renting {tbCustomerName.Text}");
-
+            try
+            {
                 string customerName = tbCustomerName.Text;
                 var dateOut = dtRented.Value;
                 var dateIn = dtReturned.Value;
@@ -112,80 +72,71 @@ namespace CarRentalApp
                     errorMessage += "Error: Please enter missing data.\n\r";
                 }
 
-
                 if (dateOut > dateIn)
                 {
                     isValid = false;
-                    errorMessage += "Error: Illegal date selection.\n\r";
+                    errorMessage += "Error: Illegal Date Selection\n\r";
                 }
-
 
                 //if(isValid == true)
                 if (isValid)
                 {
+                    //Declare an object of the record to be added
+                    var rentalRecord = new CarRentalRecord();
                     if (isEditMode)
                     {
+                        //If in edit mode, then get the ID and retrieve the record from the database and place
+                        //the result in the record object
                         var id = int.Parse(lblRecordId.Text);
-                        var rentalRecord = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
-                        rentalRecord.CustomerName = customerName;
-                        rentalRecord.DateRented = dateOut;
-                        rentalRecord.DateReturned = dateIn;
-                        rentalRecord.Cost= (decimal)cost;
-                        rentalRecord.TypeOfCarId = (int)cbTypeOfCar.SelectedValue;
-
-                        if (!isEditMode)
-                            _db.CarRentalRecords.Add(rentalRecord);
-
-                        _db.SaveChanges();
-
-                        MessageBox.Show($"Customer Name: {customerName}\n\r" +
-                            $"Date Rented: {dateOut}\n\r" +
-                            $"Datel Returned: {dateIn}\n\r" +
-                            $"Cost: {cost}\n\r " +
-                            $"Car Type: {carType}\n\r" +
-                            $"THANK YOU FOR YOUR BUSINESS");
-                        Close();
+                        rentalRecord = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
                     }
-                    else
-                    {
-                        var rentalRecord = new CarRentalRecord();
-                        rentalRecord.CustomerName = customerName;
-                        rentalRecord.DateRented = dateOut;
-                        rentalRecord.DateReturned = dateIn;
-                        rentalRecord.Cost = (decimal)cost;
-                        rentalRecord.TypeOfCarId = (int)cbTypeOfCar.SelectedValue;
-
+                    //Populate record object with values from the form 
+                    rentalRecord.CustomerName = customerName;
+                    rentalRecord.DateRented = dateOut;
+                    rentalRecord.DateReturned = dateIn;
+                    rentalRecord.Cost = (decimal)cost;
+                    rentalRecord.TypeOfCarId = (int)cbTypeOfCar.SelectedValue;
+                    //If not in edit mode, then add the record object to the database
+                    if(!isEditMode)
                         _db.CarRentalRecords.Add(rentalRecord);
-                        _db.SaveChanges();
+                    //Save Changes made to the entity
+                    _db.SaveChanges();
+                    _manageRentalRecords.PopulateGrid();
 
-                        MessageBox.Show($"Customer Name: {customerName}\n\r" +
-                            $"Date Rented: {dateOut}\n\r" +
-                            $"Datel Returned: {dateIn}\n\r" +
-                            $"Cost: {cost}\n\r " +
-                            $"Car Type: {carType}\n\r" +
-                            $"THANK YOU FOR YOUR BUSINESS");
-                    }
+                    MessageBox.Show($"Customer Name: {customerName}\n\r" +
+                        $"Date Rented: {dateOut}\n\r" +
+                        $"Date Returned: {dateIn}\n\r" +
+                        $"Cost: {cost}\n\r" +
+                        $"Car Type: {carType}\n\r" +
+                        $"THANK YOU FOR YOUR BUSINESS");
+
                     Close();
                 }
                 else
                 {
-                    isValid = false;
                     MessageBox.Show(errorMessage);
                 }
-
-            } 
-            catch (Exception ex) 
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 //throw;
             }
-
+            
             
         }
 
-        private void dtRented_ValueChanged(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
+            //Select * from TypesOfCars
+            //var cars = carRentalEntities.TypesOfCars.ToList();
+            var cars = _db.TypesOfCars
+                .Select(q => new { Id = q.Id, Name = q.Make + " " + q.Model })
+                .ToList();
 
+            cbTypeOfCar.DisplayMember = "Name";
+            cbTypeOfCar.ValueMember = "Id";
+            cbTypeOfCar.DataSource = cars;
         }
     }
 }

@@ -15,24 +15,21 @@ namespace CarRentalApp
         private bool isEditMode;
         private ManageVehicleListing _manageVehicleListing;
         private readonly CarRentalEntities _db;
-
         public AddEditVehicle(ManageVehicleListing manageVehicleListing = null)
         {
             InitializeComponent();
-            lblTitle.Text = "Add new vehicle";
-            this.Text = "Add new vehicle";
+            lblTitle.Text = "Add New Vehicle";
+            this.Text = "Add New Vehicle";
             isEditMode = false;
             _manageVehicleListing = manageVehicleListing;
             _db = new CarRentalEntities();
         }
-         
-        public AddEditVehicle(TypesOfCar carToEdit, ManageVehicleListing manageVehicleListing)
-        {
-            InitializeComponent();
-            lblTitle.Text = "Edit vehicle";
-            this.Text = "Edit vehicle";
-            _manageVehicleListing = manageVehicleListing;
 
+        public AddEditVehicle(TypesOfCar carToEdit, ManageVehicleListing manageVehicleListing = null) {
+            InitializeComponent();
+            lblTitle.Text = "Edit Vehicle";
+            this.Text = "Edit Vehicle";
+            _manageVehicleListing = manageVehicleListing;
             if (carToEdit == null)
             {
                 MessageBox.Show("Please ensure that you selected a valid record to edit");
@@ -40,11 +37,11 @@ namespace CarRentalApp
             }
             else
             {
-
+                isEditMode = true;
+                _db = new CarRentalEntities();
+                PopulateFields(carToEdit);
             }
-            isEditMode = true;
-            _db = new CarRentalEntities();
-            PopulateFields(carToEdit);
+            
         }
 
         private void PopulateFields(TypesOfCar car)
@@ -59,39 +56,63 @@ namespace CarRentalApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //if (isEditMode == true)
-            if (isEditMode) 
+            try
             {
-                var id = int.Parse(lblId.Text);
-                var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id);
-                car.Model = tbModel.Text;
-                car.Make = tbMake.Text;
-                car.VIN = tbVIN.Text;
-                car.Year = int.Parse(tbYear.Text);
-                car.LicensePlateNumber = tbLicenseNum.Text;
-
-                _db.SaveChanges();
-            }
-            else
-            {
-                // Add Code here
-                var newCar = new TypesOfCar
+                //Added Validation for make and model
+                if (string.IsNullOrWhiteSpace(tbMake.Text) ||
+                        string.IsNullOrWhiteSpace(tbModel.Text))
                 {
-                    LicensePlateNumber = tbLicenseNum.Text,
-                    Make = tbMake.Text,
-                    Model = tbModel.Text,
-                    VIN = tbVIN.Text,
-                    Year = int.Parse(tbYear.Text)
-                };
+                    MessageBox.Show("Please ensure that you provide a make and a model");
+                }
+                else
+                {
+                    //if(isEditMode == true)
+                    if (isEditMode)
+                    {
+                        //Edit Code here
+                        var id = int.Parse(lblId.Text);
+                        var car = _db.TypesOfCars.FirstOrDefault(q => q.Id == id);
+                        car.Model = tbModel.Text;
+                        car.Make = tbMake.Text;
+                        car.VIN = tbVIN.Text;
+                        car.Year = int.Parse(tbYear.Text);
+                        car.LicensePlateNumber = tbLicenseNum.Text;
 
-                _db.TypesOfCars.Add(newCar);
-                _db.SaveChanges();
+                       
+                    }
+                    else
+                    {
+                        //Added validation for make and model of cars being added
+                    
+                        // Add Code Here
+                        var newCar = new TypesOfCar
+                        {
+                            LicensePlateNumber = tbLicenseNum.Text,
+                            Make = tbMake.Text,
+                            Model = tbModel.Text,
+                            VIN = tbVIN.Text,
+                            Year = int.Parse(tbYear.Text)
+                        };
+
+                        _db.TypesOfCars.Add(newCar);
+                        
+                    }
+                    _db.SaveChanges();
+                    _manageVehicleListing.PopulateGrid();
+                    MessageBox.Show("Operation Completed. Refresh Grid To see Changes");
+                    Close();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void AddEditVehicle_Load(object sender, EventArgs e)

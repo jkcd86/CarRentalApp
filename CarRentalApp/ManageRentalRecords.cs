@@ -21,26 +21,31 @@ namespace CarRentalApp
 
         private void btnAddRecord_Click(object sender, EventArgs e)
         {
-            var addRentalRecord = new AddEditRentalRecord
+            if (!Utils.FormIsOpen("AddEditRentalRecord"))
             {
-                MdiParent = this.MdiParent
-            };
-            addRentalRecord.Show();
+                var addRentalRecord = new AddEditRentalRecord(this);
+                addRentalRecord.MdiParent = this.MdiParent;
+                addRentalRecord.Show();
+            }
         }
 
         private void btnEditRecord_Click(object sender, EventArgs e)
         {
             try
             {
-                // get id of selected row
+                // get Id of selected row
                 var id = (int)gvRecordList.SelectedRows[0].Cells["Id"].Value;
 
-                // query database for record
+                //query database for record
                 var record = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
 
-                var addEditRentalRecord = new AddEditRentalRecord(record);
-                addEditRentalRecord.MdiParent = this.MdiParent;
-                addEditRentalRecord.Show();
+                if (!Utils.FormIsOpen("AddEditRentalRecord"))
+                {
+                    var addEditRentalRecord = new AddEditRentalRecord(record, this);
+                    addEditRentalRecord.MdiParent = this.MdiParent;
+                    addEditRentalRecord.Show();
+                }
+                    
             }
             catch (Exception ex)
             {
@@ -52,17 +57,24 @@ namespace CarRentalApp
         {
             try
             {
-                // get id of selected row
-                var id = (int)gvRecordList.SelectedRows[0].Cells["id"].Value;
+                // get Id of selected row
+                var id = (int)gvRecordList.SelectedRows[0].Cells["Id"].Value;
 
-                // query database for record
+                //query database for record
                 var record = _db.CarRentalRecords.FirstOrDefault(q => q.id == id);
 
-                // delete vehicle from table
-                _db.CarRentalRecords.Remove(record);
-                _db.SaveChanges();
+                DialogResult dr = MessageBox.Show("Are You Sure You Want To Delete This Record?",
+                    "Delete", MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Warning);
+                if (dr == DialogResult.Yes)
+                {
+                    //delete vehicle from table
+                    _db.CarRentalRecords.Remove(record);
+                    _db.SaveChanges();
 
-                PopulateGrid();
+                    PopulateGrid();
+                }
+                   
             }
             catch (Exception ex)
             {
@@ -70,7 +82,7 @@ namespace CarRentalApp
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
+        private void ManageRentalRecords_Load(object sender, EventArgs e)
         {
             try
             {
@@ -82,7 +94,7 @@ namespace CarRentalApp
             }
         }
 
-        private void PopulateGrid()
+        public void PopulateGrid()
         {
             var records = _db.CarRentalRecords.Select(q => new
             {
@@ -90,16 +102,21 @@ namespace CarRentalApp
                 DateOut = q.DateRented,
                 DateIn = q.DateReturned,
                 Id = q.id,
-                Cost = q.Cost,
-                Car = q.TypesOfCar.Make + " " + q.TypesOfCar.Model 
-            })
-                .ToList();
+                q.Cost,
+                Car = q.TypesOfCar.Make + " " + q.TypesOfCar.Model
+            }).ToList();
 
             gvRecordList.DataSource = records;
             gvRecordList.Columns["DateIn"].HeaderText = "Date In";
             gvRecordList.Columns["DateOut"].HeaderText = "Date Out";
+            //Hide the column for ID. Changed from the hard coded column value to the name, 
+            // to make it more dynamic. 
             gvRecordList.Columns["Id"].Visible = false;
+        }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            PopulateGrid();
         }
     }
 }
